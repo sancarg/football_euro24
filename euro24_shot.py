@@ -4,3 +4,4 @@ import json
 from mplsoccer import VerticalPitch
 
 st.title("⚽Euro 2024 Shot Map")
+st.subheader("Select any team/player to see all their shots on the pitch!")
