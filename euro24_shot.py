@@ -11,3 +11,4 @@ df = pd.read_csv('euros_2024_shot_map.csv')
 df['location'] = df['location'].apply(json.loads)
 
 team = st.selectbox('Select a team', df['team'].sort_values().unique(), index=None)
+player = st.selectbox('Select a player', df[df['team'] == team]['player'].sort_values().unique(), index=None)
