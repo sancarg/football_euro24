@@ -25,3 +25,20 @@ filtered_df = filter_data(df, team, player)
 
 pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10))
+
+def plot_shots(df, ax, pitch):
+    for x in df.to_dict(orient='records'):
+        pitch.scatter(
+            x=float(x['location'][0]),
+            y=float(x['location'][1]),
+            ax=ax,
+            s=1000 * x['shot_statsbomb_xg'],
+            color='green' if x['shot_outcome'] == 'Goal' else 'white',
+            edgecolors='black',
+            alpha=1 if x['type'] == 'goal' else .5,
+            zorder=2 if x['type'] == 'goal' else 1
+        )
+
+plot_shots(filtered_df, ax, pitch)
+
+st.pyplot(fig)
