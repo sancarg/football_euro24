@@ -8,6 +8,4 @@ st.subheader("Select any team/player to see all their shots on the pitch!")
 
 # Loading the dataset
 df = pd.read_csv('euros_2024_shot_map.csv')
-df = df[df['type'] == 'Shot'].reset_index(drop=True)
-df['location'] = df['location'].apply(json.loads)
-#team = st.selectbox('Select a team', df['team'].sort_values().unique(), index=None)
+
