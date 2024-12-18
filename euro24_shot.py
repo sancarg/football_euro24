@@ -12,3 +12,13 @@ df['location'] = df['location'].apply(json.loads)
 
 team = st.selectbox('Select a team', df['team'].sort_values().unique(), index=None)
 player = st.selectbox('Select a player', df[df['team'] == team]['player'].sort_values().unique(), index=None)
+
+def filter_data(df, team, player):
+    if team:
+        df = df[df['team'] == team]
+    if player:
+        df = df[df['player'] == player]
+    
+    return df
+
+filtered_df = filter_data(df, team, player)
