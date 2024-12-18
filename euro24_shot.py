@@ -22,3 +22,6 @@ def filter_data(df, team, player):
     return df
 
 filtered_df = filter_data(df, team, player)
+
+pitch = VerticalPitch(pitch_type='statsbomb', half=True)
+fig, ax = pitch.draw(figsize=(10, 10))
