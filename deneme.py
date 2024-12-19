@@ -30,8 +30,8 @@ selected_player = st.selectbox('Select a player', st.session_state.team['player'
 
 pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10))
-
-def plot_shots(st.session_state.player, ax, pitch):
+filtered_player = st.session_state.player
+def plot_shots(filtered_player, ax, pitch):
     for x in st.session_state.player.to_dict(orient='records'):
         pitch.scatter(
             x=float(x['location'][0]),
@@ -44,6 +44,6 @@ def plot_shots(st.session_state.player, ax, pitch):
             zorder=2 if x['type'] == 'goal' else 1
         )
 
-plot_shots(st.session_state.player, ax, pitch)
+plot_shots(filtered_player, ax, pitch)
 
 st.pyplot(fig)
