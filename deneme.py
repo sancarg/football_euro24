@@ -37,7 +37,7 @@ pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10))
 filtered_player = st.session_state.player
 def plot_shots(filtered_player, ax, pitch):
-    for x in st.session_state.player.to_dict(orient='records'):
+    for x in st.session_state.player(orient='records'):
         pitch.scatter(
             x=float(x['location'][0]),
             y=float(x['location'][1]),
