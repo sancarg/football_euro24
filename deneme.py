@@ -35,3 +35,23 @@ if st.session_state.team:
 pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10))
 filtered_player = st.session_state.player
+
+def plot_shots(filtered_player, ax, pitch):
+    if filtered_player:
+        pitch.scatter( 
+          x=float(x['location'][0]), 
+          y=float(x['location'][1]), 
+          ax=ax, 
+          s=1000 * x['shot_statsbomb_xg'], 
+          color='green' if x['shot_outcome'] == 'Goal' else 'white', 
+          edgecolors='black', 
+          alpha=1 if x['shot_outcome'] == 'Goal' else 0.5, 
+          zorder=2 if x['shot_outcome'] == 'Goal' else 1 )
+
+# Plotting the pitch and shots
+pitch = VerticalPitch(pitch_type='statsbomb', half=True)
+fig, ax = pitch.draw(figsize=(10, 10))
+
+plot_shots(filtered_player, ax, pitch)
+
+st.pyplot(fig)
