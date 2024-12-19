@@ -25,8 +25,7 @@ def update_player():
   st.session_state.player
 
 # Select team 
-if st.session_state.team is not None:
-  selected_player = st.selectbox('Select a player', st.session_state.team.sort_values().unique(), on_change=update_player, key='player')
+selected_team = st.selectbox('Select a team', df['team'].sort_values().unique(), on_change=update_team, key='team')
 
 # Check if a team is selected before populating player options
 if st.session_state.team is not None:
