@@ -28,7 +28,8 @@ def update_player():
 selected_team = st.selectbox('Select a team', df['team'].sort_values().unique(), on_change=update_team, key='team')
 
 # select player
-selected_player = st.selectbox('Select a player', df[st.session_state.team]['player'].sort_values().unique(), on_change=update_player, key='player')
+if st.session_state.team:
+ selected_player = st.selectbox('Select a player', df[df['team'] == st.session_state.team]['player'].sort_values().unique(), on_change=update_player, key='player')
 
 
 pitch = VerticalPitch(pitch_type='statsbomb', half=True)
