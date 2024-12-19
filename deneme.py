@@ -30,7 +30,7 @@ if st.session_state.team is not None:
 
 # Check if a team is selected before populating player options
 if st.session_state.team is not None:
-  selected_player = st.selectbox('Select a player', st.session_state.team['player'].sort_values().unique(), on_change=update_player, key='player')else:
+  selected_player = st.selectbox('Select a player', st.session_state.team['player'].sort_values().unique(), on_change=update_player, key='player')
 else:  
   selected_player = st.selectbox('Select a player', ['Please select a team first'], key='player')
 
