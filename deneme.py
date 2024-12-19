@@ -23,10 +23,13 @@ def update_player():
   st.session_state.player
 
 # Select team 
-selected_team = st.selectbox('Select a team', df['team'].sort_values().unique(), on_change=update_team, key='team')
+if st.session_state.team is not None:
+  selected_player = st.selectbox('Select a player', st.session_state.team['player'].sort_values().unique(), on_change=update_player, key='player')
+else:
+  selected_player = st.selectbox('Select a player', ['Please select a team first'], key='player')
 
 # Select player
-selected_player = st.selectbox('Select a player', st.session_state.team.player.sort_values().unique(), on_change=update_player, key='player')
+selected_player = st.selectbox('Select a player', st.session_state.team['player'].sort_values().unique(), on_change=update_player, key='player')
 
 pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10))
