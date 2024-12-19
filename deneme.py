@@ -12,8 +12,10 @@ df['location'] = df['location'].apply(json.loads)
 
 
 # Initialize session state 
-if 'team' not in st.session_state: st.session_state.team = None 
-if 'player' not in st.session_state: st.session_state.player = None
+if 'team' not in st.session_state: 
+  st.session_state.team = None 
+if 'player' not in st.session_state: 
+  st.session_state.player = None
 
 # Define callback functions 
 def update_team(): 
