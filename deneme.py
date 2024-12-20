@@ -6,7 +6,7 @@ from mplsoccer import VerticalPitch
 st.title("Euro 2024 Shot Map")
 st.subheader("Filter to any team then player to see all of their shots taken!")
 
-df = pd.read_csv('euro24_shot_map.csv')
+df = pd.read_csv('euros_2024_shot_map.csv')
 df = df[df['type'] == 'Shot'].reset_index(drop=True)
 df['location'] = df['location'].apply(json.loads)
 
@@ -42,7 +42,7 @@ player_shots = df[(df['team'] == st.session_state.team) & (df['player'] == st.se
 # Extract shot locations and goal information 
 x = [loc[0] for loc in player_shots['location']] 
 y = [loc[1] for loc in player_shots['location']] 
-is_goal = player_shots['outcome'] == 'Goal' 
+is_goal = player_shots['shot_outcome'] == 'Goal' 
 
 # Plot the shots 
 pitch.scatter(x, y, ax=ax, edgecolors='black', facecolors=is_goal.map({True: 'red', False: 'white'}), marker='o', s=100, alpha=0.7) 
