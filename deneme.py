@@ -31,7 +31,22 @@ selected_team = st.selectbox('Select a team', df['team'].sort_values().unique(),
 if st.session_state.team:
  selected_player = st.selectbox('Select a player', df[df['team'] == st.session_state.team]['player'].sort_values().unique(), on_change=update_player, key='player')
 
-pitch = VerticalPitch(pitch_type='statsbomb', half=True)
-fig, ax = pitch.draw(figsize=(10, 10))
+# Create the pitch and plot shots 
+if st.session_state.team and st.session_state.player: 
+  pitch = VerticalPitch(pitch_type='statsbomb', half=True) 
+  fig, ax = pitch.draw(figsize=(10, 10)) 
+
+# Filter data for the selected player 
+player_shots = df[(df['team'] == st.session_state.team) & (df['player'] == st.session_state.player)] 
+
+# Extract shot locations 
+x = [loc[0] for loc in player_shots['location']] 
+y = [loc[1] for loc in player_shots['location']] 
+
+# Plot the shots 
+pitch.scatter(x, y, ax=ax, edgecolors='black', facecolors='red', marker='o', s=100, alpha=0.7) 
+
+# Display the pitch with shots 
+st.pyplot(fig)
 
 
