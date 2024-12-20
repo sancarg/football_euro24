@@ -39,13 +39,15 @@ if st.session_state.team and st.session_state.player:
 # Filter data for the selected player 
 player_shots = df[(df['team'] == st.session_state.team) & (df['player'] == st.session_state.player)] 
 
-# Extract shot locations and goal information 
-x = [loc[0] for loc in player_shots['location']] 
-y = [loc[1] for loc in player_shots['location']] 
-is_goal = player_shots['shot_outcome'] == 'Goal' 
-
-# Plot the shots 
-pitch.scatter(x, y, ax=ax, edgecolors='black', facecolors=is_goal.map({True: 'red', False: 'white'}), marker='o', s=100, alpha=0.7) 
+for i, shot in player_shots.iterrows(): 
+  pitch.scatter( x=float(shot['location'][0]), 
+                y=float(shot['location'][1]), 
+                ax=ax, 
+                s=1000 * shot['shot_statsbomb_xg'], 
+                color='green' if shot['shot_outcome'] == 'Goal' else 'white', 
+                edgecolors='black', 
+                alpha=1 if shot['type'] == 'goal' else 0.5, 
+                zorder=2 if shot['type'] == 'goal' else 1 )
 
 # Display the pitch with shots 
 st.pyplot(fig)
