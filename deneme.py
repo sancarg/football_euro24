@@ -44,7 +44,13 @@ x = [loc[0] for loc in player_shots['location']]
 y = [loc[1] for loc in player_shots['location']] 
 
 # Plot the shots 
-pitch.scatter(x, y, ax=ax, edgecolors='black', facecolors='red', marker='o', s=100, alpha=0.7) 
+pitch.scatter(x, y, 
+              ax=ax, 
+              edgecolors='black', 
+              color='green' if x['shot_outcome'] == 'Goal' else 'white',, 
+              marker='o', 
+              s=100, 
+              alpha=0.7) 
 
 # Display the pitch with shots 
 st.pyplot(fig)
