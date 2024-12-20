@@ -47,7 +47,7 @@ y = [loc[1] for loc in player_shots['location']]
 pitch.scatter(x, y, 
               ax=ax, 
               edgecolors='black', 
-              color='green' if x['shot_outcome'] == 'Goal' else 'white',, 
+              color='green' if x['shot_outcome'] == 'Goal' else 'white', 
               marker='o', 
               s=100, 
               alpha=0.7) 
