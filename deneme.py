@@ -32,9 +32,8 @@ if st.session_state.team:
  selected_player = st.selectbox('Select a player', df[df['team'] == st.session_state.team]['player'].sort_values().unique(), on_change=update_player, key='player')
 
 # Create the pitch and plot shots 
-if st.session_state.team and st.session_state.player: 
-  pitch = VerticalPitch(pitch_type='statsbomb', half=True) 
-  fig, ax = pitch.draw(figsize=(10, 10)) 
+pitch = VerticalPitch(pitch_type='statsbomb', half=True) 
+fig, ax = pitch.draw(figsize=(10, 10)) 
 
 # Filter data for the selected player 
 player_shots = df[(df['team'] == st.session_state.team) & (df['player'] == st.session_state.player)] 
