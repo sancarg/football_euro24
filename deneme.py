@@ -33,5 +33,5 @@ if st.session_state.team:
 
 pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10))
-filtered_player = st.session_state.player
+
 
