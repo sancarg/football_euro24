@@ -36,8 +36,7 @@ pitch = VerticalPitch(pitch_type='statsbomb', half=True)
 fig, ax = pitch.draw(figsize=(10, 10)) 
 
 # Filter data for the selected player 
-if st.session_state.team and st.session_state.player:
-  player_shots = df[(df['team'] == st.session_state.team) & (df['player'] == st.session_state.player)] 
+player_shots = df[(df['team'] == st.session_state.team) & (df['player'] == st.session_state.player)] 
 
 for i, shot in player_shots.iterrows(): 
   pitch.scatter( x=float(shot['location'][0]), 
